@@ -1,201 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Beowulf's Final Battle – Group 5</title>
+<meta charset="UTF-8">
+<title>Beowulf’s Final Battle</title>
 <style>
-:root{
-  --bg:#0f1a2e; --bg2:#16243f; --gold:#d4a843; --gold-soft:#f0d98a;
-  --ink:#f3ecd8; --muted:#a9b4c8; --parch:#2a2418;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;background:#070d18;color:var(--ink);font-family:Georgia,"Palatino Linotype",serif;overflow:hidden}
-.deck{position:relative;width:100%;height:100%}
-.slide{position:absolute;inset:0;display:none;padding:4vh 6vw 9vh;background:radial-gradient(ellipse at top,var(--bg2),var(--bg) 70%);flex-direction:column;justify-content:center;gap:2.2vh}
-.slide.active{display:flex}
-.slide::before{content:"";position:absolute;inset:2vh 2vw;border:2px solid var(--gold);opacity:.55;pointer-events:none}
-h1{font-size:clamp(2rem,5.6vw,4.4rem);color:var(--gold);line-height:1.1}
-h2{font-size:clamp(1.5rem,3.4vw,2.6rem);color:var(--gold);line-height:1.15}
-.sub{font-size:clamp(1.1rem,2.4vw,1.8rem);color:var(--gold-soft);font-style:italic}
-.pres{font-size:clamp(.95rem,1.7vw,1.3rem);color:var(--muted)}
-.cols{display:grid;grid-template-columns:1.25fr 1fr;gap:3vw;align-items:center;flex:1;min-height:0}
-ul{list-style:none;display:grid;gap:1.8vh}
-li{font-size:clamp(1rem,1.95vw,1.5rem);line-height:1.35;padding-left:1.4em;position:relative}
-li::before{content:"⚔";position:absolute;left:0;color:var(--gold);font-size:.85em}
-li b{color:var(--gold-soft)}
-.img{border:2px dashed var(--gold);background:rgba(212,168,67,.07);border-radius:6px;display:flex;align-items:center;justify-content:center;text-align:center;padding:2vh 1.5vw;color:var(--muted);font-size:clamp(.85rem,1.4vw,1.1rem);line-height:1.4;min-height:30vh;height:100%;max-height:58vh}
-.img::before{content:"🖼  Add picture: ";color:var(--gold);white-space:pre}
-.img.solo{display:block}
-.img span{display:block}
-.grid4{display:grid;grid-template-columns:1fr 1fr;gap:2vh 2vw;flex:1;min-height:0}
-.card{border:1px solid var(--gold);background:rgba(255,255,255,.04);border-radius:6px;padding:1.6vh 1.4vw;display:flex;flex-direction:column;gap:1vh}
-.card .ph{border:2px dashed var(--gold);border-radius:4px;color:var(--muted);font-size:clamp(.75rem,1.2vw,.95rem);padding:.8vh .8vw;text-align:center}
-.card h3{color:var(--gold-soft);font-size:clamp(1.1rem,2vw,1.6rem)}
-.card p{font-size:clamp(.9rem,1.5vw,1.2rem);line-height:1.35}
-.quote{border:3px double var(--gold);background:var(--parch);padding:2vh 2vw;border-radius:4px;display:grid;gap:1vh}
-.quote q{font-size:clamp(1.05rem,2.1vw,1.65rem);font-style:italic;color:var(--gold-soft);quotes:"“" "”";line-height:1.35}
-.quote small{font-size:clamp(.85rem,1.4vw,1.1rem);color:var(--muted)}
-.quote .m{font-size:clamp(.95rem,1.6vw,1.25rem)}
-.big{font-size:clamp(1.2rem,2.6vw,2rem);font-style:italic;color:var(--gold-soft);border-left:4px solid var(--gold);padding-left:1.2vw}
-.why{border-top:1px solid var(--gold);padding-top:1.6vh;font-size:clamp(.95rem,1.7vw,1.3rem);line-height:1.35}
-.why b{color:var(--gold)}
-.bar{position:fixed;left:0;right:0;bottom:0;height:7vh;display:flex;align-items:center;justify-content:space-between;padding:0 3vw;z-index:5;background:linear-gradient(transparent,rgba(7,13,24,.9))}
-.bar button{background:transparent;color:var(--gold);border:1px solid var(--gold);border-radius:4px;padding:.6vh 1vw;font:inherit;font-size:clamp(.85rem,1.3vw,1.05rem);cursor:pointer;min-height:36px}
-.bar button:hover,.bar button:focus-visible{background:var(--gold);color:var(--bg);outline:none}
-.bar .mid{display:flex;gap:.8vw;align-items:center;color:var(--muted);font-size:clamp(.85rem,1.3vw,1.05rem)}
-.notes{position:fixed;left:2vw;right:2vw;bottom:8vh;max-height:34vh;overflow:auto;background:rgba(7,13,24,.97);border:1px solid var(--gold);border-radius:6px;padding:1.6vh 1.6vw;z-index:6;display:none;font-size:clamp(.95rem,1.5vw,1.2rem);line-height:1.5}
-.notes.on{display:block}
-.notes h4{color:var(--gold);margin-bottom:.8vh;font-size:1.05em}
-.progress{position:fixed;top:0;left:0;height:4px;background:var(--gold);z-index:7;transition:width .25s}
-@media (max-width:700px){.cols{grid-template-columns:1fr}.grid4{grid-template-columns:1fr}.slide{overflow:auto;justify-content:flex-start}.img{min-height:18vh}}
-@media print{.bar,.notes,.progress{display:none}html,body{overflow:visible}.slide{display:flex;position:relative;height:100vh;page-break-after:always}}
+  :root {
+    --bg: #070d18;
+    --bg2: #132238;
+    --gold: #d4a843;
+    --gold-soft: #f0cb69;
+    --ink: #f3ecd8;
+    --muted: #a9b4c8;
+    --parch: #2a2418;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #070d18; color: var(--ink); font-family: Georgia, "Palatino Linotype", serif; overflow: hidden; }
+  .deck { position: relative; width: 100%; height: 100%; }
+  .slide { position: absolute; inset: 0; display: none; padding: 4vh 6vw 9vh; background: radial-gradient(ellipse at top, var(--bg2), var(--bg) 70%); flex-direction: column; justify-content: center; gap: 2.2vh; }
+  .slide.active { display: flex; }
+  .slide::before { content: ""; position: absolute; inset: 2vh 2vw; border: 2px solid var(--gold); opacity: .55; pointer-events: none; }
+  h1 { font-size: clamp(2rem, 5.6vw, 4.4rem); color: var(--gold); line-height: 1.1; }
+  h2 { font-size: clamp(1.5rem, 3.4vw, 2.6rem); color: var(--gold); line-height: 1.15; }
+  .sub { font-size: clamp(1.1rem, 2.4vw, 1.8rem); color: var(--gold-soft); font-style: italic; }
+  .pres { font-size: clamp(.95rem, 1.7vw, 1.3rem); color: var(--muted); }
+  .cols { display: grid; grid-template-columns: 1.25fr 1fr; gap: 3vw; align-items: center; flex: 1; min-height: 0; }
+  ul { list-style: none; display: grid; gap: 1.8vh; }
+  li { font-size: clamp(1rem, 1.95vw, 1.5rem); line-height: 1.35; padding-left: 1.4em; position: relative; }
+  li::before { content: "⚔"; position: absolute; left: 0; color: var(--gold); font-size: .85em; }
+  li b { color: var(--gold-soft); }
+  .img { border: 2px dashed var(--gold); background: rgba(212, 168, 67, .07); border-radius: 6px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 2vh 1.5vw; color: var(--muted); font-size: clamp(.85rem, 1.4vw, 1.1rem); line-height: 1.4; min-height: 30vh; height: 100%; max-height: 58vh; }
+  .img img { width: 100%; height: 100%; max-height: 52vh; object-fit: cover; border-radius: 4px; }
+  .grid4 { display: grid; grid-template-columns: 1fr 1fr; gap: 2vh 2vw; flex: 1; min-height: 0; }
+  .card { border: 1px solid var(--gold); background: rgba(255, 255, 255, .04); border-radius: 6px; padding: 1.6vh 1.4vw; display: flex; flex-direction: column; gap: 1vh; }
+  .card img { width: 100%; height: 12vh; object-fit: cover; border-radius: 4px; border: 1px solid var(--gold); }
+  .card h3 { color: var(--gold-soft); font-size: clamp(1.1rem, 2vw, 1.6rem); }
+  .card p { font-size: clamp(.9rem, 1.5vw, 1.2rem); line-height: 1.35; }
+  .bar { position: fixed; left: 0; right: 0; bottom: 0; height: 7vh; display: flex; align-items: center; justify-content: space-between; padding: 0 3vw; z-index: 5; background: linear-gradient(transparent, rgba(7, 13, 24, .9)); }
+  .bar button { background: transparent; color: var(--gold); border: 1px solid var(--gold); border-radius: 4px; padding: .6vh 1vw; font: inherit; font-size: clamp(.85rem, 1.3vw, 1.05rem); cursor: pointer; min-height: 36px; }
+  .bar button:hover, .bar button:focus-visible { background: var(--gold); color: var(--bg); outline: none; }
+  .bar .mid { display: flex; gap: .8vw; align-items: center; color: var(--muted); font-size: clamp(.85rem, 1.3vw, 1.05rem); }
+  .notes { position: fixed; left: 2vw; right: 2vw; bottom: 8vh; max-height: 34vh; overflow: auto; background: rgba(7, 13, 24, .97); border: 1px solid var(--gold); border-radius: 6px; padding: 1.6vh 1.6vw; z-index: 6; display: none; font-size: clamp(.95rem, 1.5vw, 1.2rem); line-height: 1.5; }
+  .notes.on { display: block; }
+  .notes h4 { color: var(--gold); margin-bottom: .8vh; font-size: 1.05em; }
+  .progress { position: fixed; top: 0; left: 0; height: 4px; background: var(--gold); z-index: 7; transition: width .25s; }
+  @media (max-width: 700px) {
+    .cols { grid-template-columns: 1fr; }
+    .grid4 { grid-template-columns: 1fr; }
+    .slide { overflow: auto; justify-content: flex-start; }
+    .img { min-height: 18vh; }
+  }
+  @media print {
+    .bar, .notes, .progress { display: none; }
+    html, body { overflow: visible; }
+    .slide { display: flex; position: relative; height: 100vh; page-break-after: always; }
+  }
 </style>
 </head>
 <body>
 <div class="progress" id="prog"></div>
 <div class="deck" id="deck">
 
-<!-- 1 -->
-<section class="slide" data-notes="Introduce the group and the topic. Presenters: Tselmeg, Bilguudei, Bilguun, Purevbat.">
-  <h1>Beowulf’s Final Battle<br>(Sections XXXIV–XLIII)</h1>
-  <p class="sub">The Dragon, Loyalty, and the End of a King</p>
-  <p class="pres">Group 5 — Tselmeg, Bilguudei, Bilguun, Purevbat (Class 10B)</p>
-  <img src="https://ocw.mit.edu/courses/21l-601j-old-english-and-beowulf-spring-2023/21l-601js23.jpg" alt="Beowulf fighting the dragon" style="max-height:34vh; border-radius:6px; border:2px solid var(--gold);"></section>
+  <!-- Slide 1 -->
+  <section class="slide" data-notes="Introduce the group and the topic. Presenters: Tselmeg, Bilguudei, Bilguun, Purevbat.">
+    <h1>Beowulf’s Final Battle<br>(Sections XXXIV–XLIII)</h1>
+    <p class="sub">The Dragon, Loyalty, and the End of a King</p>
+    <p class="pres">Group 5 — Tselmeg, Bilguudei, Bilguun, Purevbat (Class 10B)</p>
+    <img src="https://ocw.mit.edu/courses/21l-601j-old-english-and-beowulf-spring-2023/21l-601js23.jpg" alt="Beowulf fighting the dragon" style="max-height:34vh; border-radius:6px; border:2px solid var(--gold);">
+  </section>
 
-<!-- 2 -->
-<section class="slide" data-notes="<b>Speaker 1 — Tselmeg (~2 mins):</b> Our section starts 50 years after Beowulf became king. An angry dragon is burning down his kingdom, so Beowulf takes 11 of his best warriors to the dragon's cave. Even though Beowulf feels that his death is coming, he tells his men to stay back because he does not want any of his people to die—he wants to take the dragon down alone. When the fight starts, the dragon shoots massive fire, and Beowulf’s sword fails to cut through its tough scales. Seeing the fire, 10 of his warriors panic and run away into the woods, leaving their king behind.">
-  <h2>Summary Part 1 — Facing the Dragon<br><span class="sub">Sections XXXIV–XXXVI</span></h2>
-  <div class="cols">
-    <ul>
-      <li><b>50 Years Later:</b> Elderly King Beowulf marches to the dragon’s cave with 11 warriors.</li>
-      <li><b>Fighting Alone:</b> Beowulf orders his men to stay back so none of them get killed.</li>
-      <li><b>The First Clash:</b> The dragon blasts fire; Beowulf’s sword (<i>Naegling</i>) fails against its hard scales.</li>
-      <li><b>Betrayal:</b> Terrified by the flames, 10 warriors abandon their king and run into the woods.</li>
+  <!-- Slide 2 -->
+  <section class="slide" data-notes="<b>Speaker 1 — Tselmeg (~2 mins):</b> Our section starts 50 years after Beowulf became king. An angry dragon is burning down his kingdom, so Beowulf takes 11 of his best warriors to the dragon's cave.">
+    <h2>Summary Part 1 — Facing the Dragon<br><span class="sub">Sections XXXIV–XXXVI</span></h2>
+    <div class="cols">
+      <ul>
+        <li><b>50 Years Later:</b> Elderly King Beowulf marches to the dragon’s cave with 11 warriors.</li>
+        <li><b>Fighting Alone:</b> Beowulf orders his men to stay back so none of them get killed.</li>
+        <li><b>The First Clash:</b> The dragon blasts fire; Beowulf’s sword (<i>Naegling</i>) fails against its hard scales.</li>
+        <li><b>Betrayal:</b> Terrified by the flames, 10 warriors abandon their king and run into the woods.</li>
+      </ul>
+      <div class="img">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Beowulf_and_dragon_by_J._R._R._Tolkien.jpg/800px-Beowulf_and_dragon_by_J._R._R._Tolkien.jpg" alt="Beowulf and Dragon">
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 3 -->
+  <section class="slide" data-notes="<b>Speaker 2 — Bilguudei (~2 mins):</b> Only one young warrior, Wiglaf, stays loyal and jumps into the flames to help.">
+    <h2>Summary Part 2 — Loyalty &amp; Victory<br><span class="sub">Sections XXXVII–XXXIX</span></h2>
+    <div class="cols">
+      <ul>
+        <li><b>Wiglaf Steps In:</b> Young warrior Wiglaf refuses to run and charges into the fire to help.</li>
+        <li><b>The Mortal Wound:</b> Beowulf’s sword breaks; the dragon bites his neck with deadly poison.</li>
+        <li><b>Defeating the Beast:</b> While the dragon bites Beowulf, Wiglaf stabs its soft belly, and Beowulf cuts it in half.</li>
+        <li><b>Dying Wishes:</b> Beowulf passes his armor and leadership to Wiglaf and asks for a coastal burial mound.</li>
+      </ul>
+      <div class="img">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Beowulf_and_Wiglaf_fighting_the_dragon.jpg/800px-Beowulf_and_Wiglaf_fighting_the_dragon.jpg" alt="Beowulf and Wiglaf">
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 4 -->
+  <section class="slide" data-notes="<b>Speaker 3 — Bilguun (~2 mins):</b> Wiglaf scolds the cowards who ran away, telling them their disgrace will be remembered.">
+    <h2>Summary Part 3 — The Aftermath &amp; Prophecy<br><span class="sub">Sections XL–XLIII</span></h2>
+    <div class="cols">
+      <ul>
+        <li><b>Wiglaf's Rebuke:</b> Wiglaf angrily scolds the 10 fleeing cowards, telling them dishonor is worse than death.</li>
+        <li><b>The Messenger's Warning:</b> A messenger announces Beowulf's death and warns that enemies like the Franks and Swedes will now attack Geatland.</li>
+        <li><b>The Dragon's Hoard:</b> The cursed gold treasure is buried alongside Beowulf so no one profits from it.</li>
+        <li><b>The Pyre:</b> The Geats burn Beowulf’s body on a massive pyre and build a high memorial mound by the sea.</li>
+      </ul>
+      <div class="img">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Beowulf%27s_funeral_%28Frank_Dicksee%29.jpg/800px-Beowulf%27s_funeral_%28Frank_Dicksee%29.jpg" alt="Beowulf's Funeral">
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5 -->
+  <section class="slide" data-notes="<b>Speaker 4 — Purevbat (~2 mins):</b> Let's look at the main characters and figures in this final epic battle.">
+    <h2>Character &amp; Figure Spotlight<br><span class="sub">Key Figures in the Final Battle</span></h2>
+    <div class="grid4">
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Beowulf_illustration.jpg/400px-Beowulf_illustration.jpg" alt="Beowulf">
+        <h3>Beowulf</h3>
+        <p>Aged King of Geatland; courageous, selfless, meeting his heroic fate.</p>
+      </div>
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Wiglaf_defending_Beowulf.jpg/400px-Wiglaf_defending_Beowulf.jpg" alt="Wiglaf">
+        <h3>Wiglaf</h3>
+        <p>Loyal kinsman and young warrior who steps up when others flee.</p>
+      </div>
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Dragon_by_John_Teniel.jpg/400px-Dragon_by_John_Teniel.jpg" alt="The Dragon">
+        <h3>The Dragon</h3>
+        <p>Ancient guardian of cursed treasure; symbolizes destruction and fate.</p>
+      </div>
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Cowardly_knights_placeholder.jpg/400px-Cowardly_knights_placeholder.jpg" alt="The Warriors">
+        <h3>The 10 Warriors</h3>
+        <p>Fleeing retainers whose cowardice brings shame upon the Geat nation.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 6 -->
+  <section class="slide" data-notes="Let's analyze some key literary themes from these final sections.">
+    <h2>Literary Analysis &amp; Themes<br><span class="sub">Deeper Meanings</span></h2>
+    <div class="cols">
+      <ul>
+        <li><b>Wyrd (Fate):</b> Beowulf accepts his doom with dignity, knowing his final hour has come.</li>
+        <li><b>Comitatus Broken:</b> The sacred bond between king and warrior fails when 10 men run.</li>
+        <li><b>Good King vs. Greedy Dragon:</b> Beowulf gives his life to protect his people, while the dragon hoards useless gold.</li>
+        <li><b>Elegiac Tone:</b> The text shifts from triumph to deep sorrow, foreshadowing the downfall of the Geats.</li>
+      </ul>
+      <div class="img">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Beowulf_burl_mound.jpg/800px-Beowulf_burl_mound.jpg" alt="Burial Mound">
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 7 -->
+  <section class="slide" data-notes="Conclusion and Q&A. Thank everyone for listening.">
+    <h1>Conclusion &amp; Q&amp;A<br><span class="sub">The Legacy of Beowulf</span></h1>
+    <ul style="margin-top: 2vh;">
+      <li><b>The Final Legacy:</b> Beowulf dies as a true protector, remembered forever as the greatest hero of the Geats.</li>
+      <li><b>Class Discussion:</b> Why do you think only Wiglaf stayed behind while the others fled?</li>
+      <li><b>Thank You!</b> We are happy to answer any questions.</li>
     </ul>
-    <div class="img">Diagram: Beowulf facing the dragon alone, 10 soldiers running toward the trees, 1 staying behind</div>
-  </div>
-</section>
-
-<!-- 3 -->
-<section class="slide" data-notes="<b>Speaker 2 — Bilguudei (~2 mins):</b> Only one young warrior, Wiglaf, stays loyal and jumps into the flames to help. Beowulf hits the dragon so hard his sword snaps in half. The dragon lunges and bites Beowulf right in the neck, filling him with fatal poison. While the dragon is busy biting Beowulf, Wiglaf stabs it lower down in its soft belly, and together they cut the beast in half. Knowing the poison will kill him, Beowulf gives his golden armor to Wiglaf, names him the new leader, and asks his people to build a giant burial hill by the sea before he dies.">
-  <h2>Summary Part 2 — Loyalty &amp; Victory<br><span class="sub">Sections XXXVII–XXXIX</span></h2>
-  <div class="cols">
-    <ul>
-      <li><b>Wiglaf Steps In:</b> Young warrior Wiglaf refuses to run and charges into the fire to help.</li>
-      <li><b>The Mortal Wound:</b> Beowulf’s sword breaks; the dragon bites his neck with deadly poison.</li>
-      <li><b>Defeating the Beast:</b> While the dragon bites Beowulf, Wiglaf stabs its soft belly, and Beowulf cuts it in half.</li>
-      <li><b>Dying Wishes:</b> Beowulf passes his armor and leadership to Wiglaf and asks for a coastal burial mound.</li>
-    </ul>
-    <div class="img">Two warriors working together to defeat a giant dragon, with a broken sword on the ground</div>
-  </div>
-</section>
-
-<!-- 4 -->
-<section class="slide" data-notes="<b>Speaker 3 — Bilguun (~2 mins):</b> When the 10 cowardly warriors finally walk out of the woods, Wiglaf is furious with them for disgracing their king and strips them of their land rights. Soon after, a messenger warns the kingdom that rival enemies will attack now that Beowulf is dead. At the funeral, the people burn Beowulf’s body on a huge wooden fire and build the coastal burial mound he asked for. Because the dragon's treasure felt cursed and cost their king his life, the Geats bury all the gold inside the tomb with Beowulf instead of spending it.">
-  <h2>Summary Part 3 — Aftermath &amp; Funeral<br><span class="sub">Sections XL–XLIII</span></h2>
-  <div class="cols">
-    <ul>
-      <li><b>Shaming the Cowards:</b> Wiglaf furiously condemns the 10 deserters for disgracing their king.</li>
-      <li><b>Warning of War:</b> A messenger warns that enemy tribes will soon attack now that Beowulf is gone.</li>
-      <li><b>The Funeral Pyre:</b> The Geats burn Beowulf’s body and push the dragon into the ocean.</li>
-      <li><b>Cursed Treasure:</b> The people bury all the dragon's gold inside Beowulf’s tomb—useless in the ground.</li>
-    </ul>
-    <div class="img">A coastal burial mound overlooking the ocean, smoke rising from a funeral fire</div>
-  </div>
-</section>
-
-<!-- 5 -->
-<section class="slide" data-notes="<b>Speaker 1 or 2 (~1 min):</b> To quickly recap the main characters: Beowulf shows true leadership by risking his life for his people. Wiglaf proves what real loyalty looks like when everyone else runs. The Dragon acts as Beowulf's final, deadliest test, and the 10 Warriors represent cowardice and broken promises.">
-  <h2>Main Characters &amp; Their Actions</h2>
-  <div class="grid4">
-    <div class="card"><div class="ph">Picture: Beowulf</div><h3>Beowulf</h3><p>Aging, brave king who sacrifices his life to protect his people from the dragon.</p></div>
-    <div class="card"><div class="ph">Picture: Wiglaf</div><h3>Wiglaf</h3><p>The only loyal warrior; saves Beowulf’s life in battle and becomes the next leader.</p></div>
-    <div class="card"><div class="ph">Picture: The Dragon</div><h3>The Dragon</h3><p>A 50-foot fire-breathing monster guarding cursed gold; fatally poisons Beowulf.</p></div>
-    <div class="card"><div class="ph">Picture: The 10 Warriors</div><h3>The 10 Warriors</h3><p>Cowards who break their oath of loyalty and run away during the fight.</p></div>
-  </div>
-</section>
-
-<!-- 6 -->
-<section class="slide" data-notes="<b>Speaker 3 (~1 min):</b> Two quotes sum up our section best. First, Beowulf tells his men, 'The fight is not yours, nor is it up to any man except me to measure his strength against the monster,' showing how determined he was to protect his soldiers. Second, Wiglaf tells the cowards, 'Death is better for any warrior than a life of disgrace,' highlighting the Anglo-Saxon code of honor.">
-  <h2>Key Quotes from the Poem</h2>
-  <div class="quote">
-    <small>Quote 1 — Beowulf on Fighting Alone (Section XXXV)</small>
-    <q>The fight is not yours, nor is it up to any man except me to measure his strength against the monster.</q>
-    <p class="m"><b style="color:var(--gold)">Meaning:</b> Shows Beowulf’s courage and desire to protect his soldiers from dying.</p>
-  </div>
-  <div class="quote">
-    <small>Quote 2 — Wiglaf on Loyalty vs. Cowardice (Section XXXIX)</small>
-    <q>Death is better for any warrior than a life of disgrace!</q>
-    <p class="m"><b style="color:var(--gold)">Meaning:</b> Wiglaf shames the 10 men who ran away, proving honor matters more than survival.</p>
-  </div>
-</section>
-
-<!-- 7 -->
-<section class="slide" data-notes="<b>Speaker 4 — Purevbat (~2 mins):</b> Finally, we answered the big question: Was fighting the dragon Beowulf’s greatest success or his greatest mistake? We believe it was his greatest success. Beowulf had already dominated as a great king for 50 years, and he felt his death coming as soon as he knew what the enemy was. Facing the deadliest monster he had ever seen and taking it down with him was like a competitive match—an honorable tie that saved his kingdom from fire. This ending matters because it completes Beowulf's life as a true hero who valued honor and protecting his people over everything else.">
-  <h2>The Big Question &amp; Conclusion</h2>
-  <p class="big">Is Beowulf’s battle with the dragon his greatest success or his greatest mistake?</p>
-  <div class="cols">
-    <ul>
-      <li><b>Our Answer — Greatest Success</b></li>
-      <li><b>50 Years of Rule:</b> Beowulf already dominated as a peaceful, undefeated king for half a century.</li>
-      <li><b>Honorable Match:</b> Sensing his death was near, he faced the deadliest enemy he ever knew and killed it—an honorable tie rather than dying weak in bed.</li>
-      <li><b>Saved His People:</b> He stopped the dragon from destroying his kingdom and passed leadership to a worthy successor (Wiglaf).</li>
-    </ul>
-    <div class="img">Beowulf’s burial mound at sunset, or Wiglaf holding the king’s armor</div>
-  </div>
-  <p class="why"><b>Why This Section Matters:</b> Completes Beowulf’s heroic journey and shows that true leadership means loyalty and sacrifice, not gold.</p>
-</section>
+  </section>
 
 </div>
 
-<div class="notes" id="notes"><h4>Speaker notes</h4><div id="notesText"></div></div>
-
 <div class="bar">
-  <button id="notesBtn" title="Toggle speaker notes (N)">Notes (N)</button>
-  <div class="mid"><button id="prev" aria-label="Previous slide">◀ Prev</button><span id="count"></span><button id="next" aria-label="Next slide">Next ▶</button></div>
-  <button id="fs" title="Fullscreen (F)">Fullscreen (F)</button>
+  <button id="prevBtn" onclick="changeSlide(-1)">❮ Prev</button>
+  <div class="mid">
+    <span id="slideNum">1 / 7</span>
+    <button id="notesBtn" onclick="toggleNotes()">📝 Notes</button>
+  </div>
+  <button id="nextBtn" onclick="changeSlide(1)">Next ❯</button>
+</div>
+
+<div class="notes" id="notesBox">
+  <h4 id="notesTitle">Speaker Notes</h4>
+  <div id="notesContent"></div>
 </div>
 
 <script>
-(function(){
-  var slides=[].slice.call(document.querySelectorAll('.slide')),i=0;
-  var notes=document.getElementById('notes'),nt=document.getElementById('notesText');
-  function show(n){
-    i=Math.max(0,Math.min(slides.length-1,n));
-    slides.forEach(function(s,k){s.classList.toggle('active',k===i)});
-    document.getElementById('count').textContent=(i+1)+' / '+slides.length;
-    document.getElementById('prog').style.width=((i+1)/slides.length*100)+'%';
-    nt.innerHTML=slides[i].getAttribute('data-notes')||'';
-    try{location.hash='s'+(i+1)}catch(e){}
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+  const prog = document.getElementById('prog');
+  const slideNum = document.getElementById('slideNum');
+  const notesBox = document.getElementById('notesBox');
+  const notesContent = document.getElementById('notesContent');
+
+  function updateSlide() {
+    slides.forEach((s, i) => s.classList.toggle('active', i === currentSlide));
+    prog.style.width = ((currentSlide + 1) / slides.length) * 100 + '%';
+    slideNum.textContent = (currentSlide + 1) + ' / ' + slides.length;
+    notesContent.innerHTML = slides[currentSlide].getAttribute('data-notes') || 'No notes for this slide.';
+    if (notesBox.classList.contains('on')) {
+      notesBox.scrollTop = 0;
+    }
   }
-  function toggleNotes(){notes.classList.toggle('on')}
-  function fs(){
-    var d=document.documentElement;
-    if(!document.fullscreenElement){(d.requestFullscreen||function(){}).call(d)}else{document.exitFullscreen()}
+
+  function changeSlide(dir) {
+    currentSlide = Math.max(0, Math.min(slides.length - 1, currentSlide + dir));
+    updateSlide();
   }
-  document.getElementById('prev').onclick=function(){show(i-1)};
-  document.getElementById('next').onclick=function(){show(i+1)};
-  document.getElementById('notesBtn').onclick=toggleNotes;
-  document.getElementById('fs').onclick=fs;
-  document.addEventListener('keydown',function(e){
-    var k=e.key;
-    if(k==='ArrowRight'||k==='PageDown'||k===' '||k==='Enter'){e.preventDefault();show(i+1)}
-    else if(k==='ArrowLeft'||k==='PageUp'||k==='Backspace'){e.preventDefault();show(i-1)}
-    else if(k==='Home')show(0);
-    else if(k==='End')show(slides.length-1);
-    else if(k==='n'||k==='N')toggleNotes();
-    else if(k==='f'||k==='F')fs();
+
+  function toggleNotes() {
+    notesBox.classList.toggle('on');
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+      if (currentSlide < slides.length - 1) { changeSlide(1); e.preventDefault(); }
+    } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      if (currentSlide > 0) { changeSlide(-1); e.preventDefault(); }
+    } else if (e.key === 'n' || e.key === 'N') {
+      toggleNotes();
+    }
   });
-  var x0=null;
-  document.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
-  document.addEventListener('touchend',function(e){
-    if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;
-    if(Math.abs(dx)>50)show(i+(dx<0?1:-1));x0=null;
-  });
-  var m=/^#s(\d+)$/.exec(location.hash);
-  show(m?parseInt(m[1],10)-1:0);
-})();
+
+  updateSlide();
 </script>
 </body>
 </html>
